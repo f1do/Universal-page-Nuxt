@@ -1,4 +1,4 @@
-# crud-calls
+# blog-axios-calls
 
 > Simple calls from a universal nuxt project
 
