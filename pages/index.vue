@@ -3,7 +3,7 @@
     <div>
       <logo />
       <h1 class="title">
-        crud-calls
+        blog-axios-calls
       </h1>
       <h2 class="subtitle">
         Simple calls from a universal nuxt project
@@ -35,6 +35,12 @@ import Logo from '~/components/Logo.vue'
 export default Vue.extend({
   components: {
     Logo
+  },
+  head:{
+    title:'Pagina de inicio',
+    meta:[
+      {hid:'description', name:'description', content:'Main Page'}
+    ]
   }
 })
 </script>

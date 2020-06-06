@@ -1,26 +1,36 @@
 <template>
-  <b-container>
-    <b-row>
-        <b-col md-3 v-for="(itm, ndx) in items" :key="ndx">
-            <h2>
-                <nuxt-link :to="`/blog/${itm.id}`">{{itm.description}}</nuxt-link>
-            </h2>
-        </b-col>
-    </b-row>
+  <b-container class="mt-5">
+    <b-card class="mt-2" v-for="(itm, ndx) in items" :key="ndx">
+        <b-card-body >
+            <nuxt-link :to="`blog/${itm.id}`">
+                <h1>{{itm.title}}</h1>
+            </nuxt-link>
+            <p>
+                {{itm.body}}
+            </p>
+        </b-card-body>
+    </b-card>
   </b-container>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import Vue from 'vue'
+import axios from "axios";
+
+export default Vue.extend({
     data(){
         return{
             items:[
-                {id:1, description:'Item #1'},
-                {id:2, description:'Item #2'},
-                {id:3, description:'Item #3'},
-                {id:4, description:'Item #4'}
             ]
         }
+    },
+    async created(){
+        try {
+            const res = await axios.get('http://jsonplaceholder.typicode.com/posts?_limit=10');
+            this.items = res.data;
+        } catch (err) {
+            console.log(err);
+        }
     }
-}
+})
 </script>
